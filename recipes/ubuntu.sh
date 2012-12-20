@@ -55,3 +55,8 @@ echo "==> done..."
 echo -e "\n=> Installing git..."
 sudo $pm -y install git-core >> $log_file 2>&1
 echo "==> done..."
+
+# Install nodejs for assets
+echo -e "\n=> Installing Nodejs..."
+sudo $pm -y install nodejs >> $log_file 2>&1
+echo "==> done..."
