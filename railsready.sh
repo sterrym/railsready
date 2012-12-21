@@ -179,11 +179,19 @@ elif [ $whichRuby -eq 2 ] ; then
 fi
 echo "==> done..."
 
-echo -e "\n=> Installing Bundler, Passenger and Rails..."
+echo -e "\n=> Installing Bundler..."
 if [ $whichRuby -eq 1 ] ; then
   sudo gem install bundler --no-ri --no-rdoc >> $log_file 2>&1
 elif [ $whichRuby -eq 2 ] ; then
   gem install bundler --no-ri --no-rdoc >> $log_file 2>&1
+fi
+echo "==> done..."
+
+echo -e "\n=> Installing Unicorn..."
+if [ $whichRuby -eq 1 ] ; then
+  sudo gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
+elif [ $whichRuby -eq 2 ] ; then
+  gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
 fi
 echo "==> done..."
 
