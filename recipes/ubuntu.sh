@@ -60,3 +60,8 @@ echo "==> done..."
 echo -e "\n=> Installing Nodejs..."
 sudo $pm -y install nodejs >> $log_file 2>&1
 echo "==> done..."
+
+# Install Nginx
+echo -e "\n=> Installing Nginx..."
+sudo $pm -y install nginx >> $log_file 2>&1
+echo "==> done..."
