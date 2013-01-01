@@ -108,84 +108,84 @@ fi
 echo -e "\n==> done running $distro specific commands..."
 
 #now that all the distro specific packages are installed lets get Ruby
-if [ $whichRuby -eq 1 ] ; then
-  # Install Ruby
-  echo -e "\n=> Downloading Ruby $ruby_version_string \n"
-  cd $railsready_path/src && wget $ruby_source_url
-  echo -e "\n==> done..."
-  echo -e "\n=> Extracting Ruby $ruby_version_string"
-  tar -xzf $ruby_source_tar_name >> $log_file 2>&1
-  echo "==> done..."
-  echo -e "\n=> Building Ruby $ruby_version_string (this will take a while)..."
-  cd  $ruby_source_dir_name && ./configure --prefix=/usr/local >> $log_file 2>&1 \
-   && make >> $log_file 2>&1 \
-    && sudo make install >> $log_file 2>&1
-  echo "==> done..."
-elif [ $whichRuby -eq 2 ] ; then
-  #thanks wayneeseguin :)
-  echo -e "\n=> Installing RVM the Ruby enVironment Manager http://rvm.beginrescueend.com/rvm/install/ \n"
-  curl -O -L -k https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer
-  chmod +x rvm-installer
-  "$PWD/rvm-installer" >> $log_file 2>&1
-  [[ -f rvm-installer ]] && rm -f rvm-installer
-  echo -e "\n=> Setting up RVM to load with new shells..."
-  #if RVM is installed as user root it goes to /usr/local/rvm/ not ~/.rvm
-  if [ -f ~/.bashrc ] ; then
-    echo  '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*' >> "$HOME/.bashrc"
-  fi
-  if [ -f ~/.bash_profile ] ; then
-    echo  '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*' >> "$HOME/.bash_profile"
-  fi
-  echo "==> done..."
-  echo "=> Loading RVM..."
-  if [ -f ~/.bashrc ] ; then
-    source ~/.bashrc
-  fi
-  if [ -f ~/.bash_profile ] ; then
-    source ~/.bash_profile
-  fi
-  if [ -f ~/.rvm/scripts/rvm ] ; then
-    source ~/.rvm/scripts/rvm
-  fi
-  echo "==> done..."
-  echo -e "\n=> Installing Ruby $ruby_version_string (this will take a while)..."
-  echo -e "=> More information about installing rubies can be found at http://rvm.beginrescueend.com/rubies/installing/ \n"
-  rvm install $ruby_version >> $log_file 2>&1
-  echo -e "\n==> done..."
-  echo -e "\n=> Using $ruby_version and setting it as default for new shells..."
-  echo "=> More information about Rubies can be found at http://rvm.beginrescueend.com/rubies/default/"
-  rvm --default use $ruby_version >> $log_file 2>&1
-  echo "==> done..."
-else
-  echo "How did you even get here?"
-  exit 1
-fi
+# if [ $whichRuby -eq 1 ] ; then
+#   # Install Ruby
+#   echo -e "\n=> Downloading Ruby $ruby_version_string \n"
+#   cd $railsready_path/src && wget $ruby_source_url
+#   echo -e "\n==> done..."
+#   echo -e "\n=> Extracting Ruby $ruby_version_string"
+#   tar -xzf $ruby_source_tar_name >> $log_file 2>&1
+#   echo "==> done..."
+#   echo -e "\n=> Building Ruby $ruby_version_string (this will take a while)..."
+#   cd  $ruby_source_dir_name && ./configure --prefix=/usr/local >> $log_file 2>&1 \
+#    && make >> $log_file 2>&1 \
+#     && sudo make install >> $log_file 2>&1
+#   echo "==> done..."
+# elif [ $whichRuby -eq 2 ] ; then
+#   #thanks wayneeseguin :)
+#   echo -e "\n=> Installing RVM the Ruby enVironment Manager http://rvm.beginrescueend.com/rvm/install/ \n"
+#   curl -O -L -k https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer
+#   chmod +x rvm-installer
+#   "$PWD/rvm-installer" >> $log_file 2>&1
+#   [[ -f rvm-installer ]] && rm -f rvm-installer
+#   echo -e "\n=> Setting up RVM to load with new shells..."
+#   #if RVM is installed as user root it goes to /usr/local/rvm/ not ~/.rvm
+#   if [ -f ~/.bashrc ] ; then
+#     echo  '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*' >> "$HOME/.bashrc"
+#   fi
+#   if [ -f ~/.bash_profile ] ; then
+#     echo  '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*' >> "$HOME/.bash_profile"
+#   fi
+#   echo "==> done..."
+#   echo "=> Loading RVM..."
+#   if [ -f ~/.bashrc ] ; then
+#     source ~/.bashrc
+#   fi
+#   if [ -f ~/.bash_profile ] ; then
+#     source ~/.bash_profile
+#   fi
+#   if [ -f ~/.rvm/scripts/rvm ] ; then
+#     source ~/.rvm/scripts/rvm
+#   fi
+#   echo "==> done..."
+#   echo -e "\n=> Installing Ruby $ruby_version_string (this will take a while)..."
+#   echo -e "=> More information about installing rubies can be found at http://rvm.beginrescueend.com/rubies/installing/ \n"
+#   rvm install $ruby_version >> $log_file 2>&1
+#   echo -e "\n==> done..."
+#   echo -e "\n=> Using $ruby_version and setting it as default for new shells..."
+#   echo "=> More information about Rubies can be found at http://rvm.beginrescueend.com/rubies/default/"
+#   rvm --default use $ruby_version >> $log_file 2>&1
+#   echo "==> done..."
+# else
+#   echo "How did you even get here?"
+#   exit 1
+# fi
 
-# Reload bash
-echo -e "\n=> Reloading shell so ruby and rubygems are available..."
-if [ -f ~/.bashrc ] ; then
-  source ~/.bashrc
-fi
-if [ -f ~/.bash_profile ] ; then
-  source ~/.bash_profile
-fi
-echo "==> done..."
+# # Reload bash
+# echo -e "\n=> Reloading shell so ruby and rubygems are available..."
+# if [ -f ~/.bashrc ] ; then
+#   source ~/.bashrc
+# fi
+# if [ -f ~/.bash_profile ] ; then
+#   source ~/.bash_profile
+# fi
+# echo "==> done..."
 
-echo -e "\n=> Updating Rubygems..."
-if [ $whichRuby -eq 1 ] ; then
-  sudo gem update --system --no-ri --no-rdoc >> $log_file 2>&1
-elif [ $whichRuby -eq 2 ] ; then
-  gem update --system --no-ri --no-rdoc >> $log_file 2>&1
-fi
-echo "==> done..."
+# echo -e "\n=> Updating Rubygems..."
+# if [ $whichRuby -eq 1 ] ; then
+#   sudo gem update --system --no-ri --no-rdoc >> $log_file 2>&1
+# elif [ $whichRuby -eq 2 ] ; then
+#   gem update --system --no-ri --no-rdoc >> $log_file 2>&1
+# fi
+# echo "==> done..."
 
-echo -e "\n=> Installing Bundler..."
-if [ $whichRuby -eq 1 ] ; then
-  sudo gem install bundler --no-ri --no-rdoc >> $log_file 2>&1
-elif [ $whichRuby -eq 2 ] ; then
-  gem install bundler --no-ri --no-rdoc >> $log_file 2>&1
-fi
-echo "==> done..."
+# echo -e "\n=> Installing Bundler..."
+# if [ $whichRuby -eq 1 ] ; then
+#   sudo gem install bundler --no-ri --no-rdoc >> $log_file 2>&1
+# elif [ $whichRuby -eq 2 ] ; then
+#   gem install bundler --no-ri --no-rdoc >> $log_file 2>&1
+# fi
+# echo "==> done..."
 
 echo -e "\n=> Installing Unicorn..."
 if [ $whichRuby -eq 1 ] ; then
@@ -196,7 +196,7 @@ fi
 echo "==> done..."
 
 echo -e "\n=> Creating config/unicorn.rb..."
-cd /vagrant/config && curl -O unicorn.rb https://raw.github.com/defunkt/unicorn/master/examples/unicorn.conf.rb
+cd /vagrant/ && curl -O config/unicorn.rb https://raw.github.com/defunkt/unicorn/master/examples/unicorn.conf.rb
 echo "==> done..."
 
 echo -e "\n#################################"
