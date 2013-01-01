@@ -1,4 +1,4 @@
-#!/bin/bash
+pwd#!/bin/bash
 #
 # Rails Ready
 #
@@ -17,7 +17,7 @@ ruby_source_url="http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p327.tar.gz"
 ruby_source_tar_name="ruby-1.9.3-p327.tar.gz"
 ruby_source_dir_name="ruby-1.9.3-p327"
 script_runner=$(whoami)
-railsready_path=$(cd && pwd)/railsready
+railsready_path=$(cd && pwd)
 log_file="$railsready_path/install.log"
 
 control_c()
