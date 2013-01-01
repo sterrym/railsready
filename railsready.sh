@@ -196,7 +196,7 @@ fi
 echo "==> done..."
 
 echo -e "\n=> Creating config/unicorn.rb..."
-curl -O config/unicorn.rb https://raw.github.com/defunkt/unicorn/master/examples/unicorn.conf.rb
+cd /vagrant/config && curl -O config/unicorn.rb https://raw.github.com/defunkt/unicorn/master/examples/unicorn.conf.rb
 echo "==> done..."
 
 echo -e "\n#################################"
