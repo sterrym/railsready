@@ -196,6 +196,7 @@ fi
 echo "==> done..."
 
 echo -e "\n=> Creating config/unicorn.rb..."
+touch config/unicorn.rb
 wget -O config/unicorn.rb https://raw.github.com/defunkt/unicorn/master/examples/unicorn.conf.rb
 echo "==> done..."
 
