@@ -195,9 +195,9 @@ elif [ $whichRuby -eq 2 ] ; then
 fi
 echo "==> done..."
 
-echo -e "\n=> Creating config/unicorn.rb..."
-wget -O config/unicorn.rb https://raw.github.com/defunkt/unicorn/master/examples/unicorn.conf.rb
-echo "==> done..."
+# echo -e "\n=> Creating config/unicorn.rb..."
+#   wget -O config/unicorn.rb https://raw.github.com/defunkt/unicorn/master/examples/unicorn.conf.rb
+# echo "==> done..."
 
 echo -e "\n#################################"
 echo    "### Installation is complete! ###"
