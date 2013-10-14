@@ -85,7 +85,9 @@ if [ $isRails -eq 1 ] ; then
   echo -e "\n"
   echo "What is the path to config:"
   read railsPath
+  echo "You chose $railsPath"
 fi
+
 
 # Ask if you want to build Ruby or install RVM
 echo -e "\n"
