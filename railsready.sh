@@ -101,19 +101,19 @@ echo "=> 2. 2.0.0"
 echo -n "Select your Ruby version [1 or 2]? "
 read whichRubyVersion
 
-if [ $whichRubyVersion -eq 1 ] ; then
-  ruby_version="1.9.3"
-  ruby_version_string="ruby-1.9.3"
-  ruby_source_url="http://ftp.ruby-lang.org/pub/ruby/2.0/ruby-1.9.3.tar.gz"
-  ruby_source_tar_name="ruby-1.9.3.tar.gz"
-  ruby_source_dir_name="ruby-1.9.3"
-elif [ $whichRubyVersion -eq 2 ] ; then
-  ruby_version="2.0.0"
-  ruby_version_string="ruby-2.0.0"
-  ruby_source_url="http://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0.tar.gz"
-  ruby_source_tar_name="ruby-2.0.0.tar.gz"
-  ruby_source_dir_name="ruby-2.0.0"
-fi
+# if [ $whichRubyVersion -eq 1 ] ; then
+#   ruby_version="1.9.3"
+#   ruby_version_string="ruby-1.9.3"
+#   ruby_source_url="http://ftp.ruby-lang.org/pub/ruby/2.0/ruby-1.9.3.tar.gz"
+#   ruby_source_tar_name="ruby-1.9.3.tar.gz"
+#   ruby_source_dir_name="ruby-1.9.3"
+# elif [ $whichRubyVersion -eq 2 ] ; then
+#   ruby_version="2.0.0"
+#   ruby_version_string="ruby-2.0.0"
+#   ruby_source_url="http://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0.tar.gz"
+#   ruby_source_tar_name="ruby-2.0.0.tar.gz"
+#   ruby_source_dir_name="ruby-2.0.0"
+# fi
 
 
 # echo -e "\n=> Downloading and running recipe for $distro...\n"
@@ -205,13 +205,13 @@ fi
 # fi
 # echo "==> done..."
 
-echo -e "\n=> Installing Unicorn..."
-if [ $whichRuby -eq 1 ] ; then
-  sudo gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
-elif [ $whichRuby -eq 2 ] ; then
-  gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
-fi
-echo "==> done..."
+# echo -e "\n=> Installing Unicorn..."
+# if [ $whichRuby -eq 1 ] ; then
+#   sudo gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
+# elif [ $whichRuby -eq 2 ] ; then
+#   gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
+# fi
+# echo "==> done..."
 
 # Ask if this is Rails
 echo -e "\n"
