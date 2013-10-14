@@ -89,6 +89,10 @@ else
   exit 1
 fi
 
+echo -e "\n=> Creating install dir..."
+cd && mkdir -p railsready/src && cd railsready && touch install.log
+echo "==> done..."
+
 # Ask you which version of Ruby
 echo -e "\n"
 echo "Select Ruby version"
@@ -110,10 +114,6 @@ elif [ $whichRubyVersion -eq 2 ] ; then
   ruby_source_tar_name="ruby-2.0.0.tar.gz"
   ruby_source_dir_name="ruby-2.0.0"
 fi
-
-echo -e "\n=> Creating install dir..."
-cd && mkdir -p railsready/src && cd railsready && touch install.log
-echo "==> done..."
 
 echo -e "\n=> Downloading and running recipe for $distro...\n"
 #Download the distro specific recipe and run it, passing along all the variables as args
