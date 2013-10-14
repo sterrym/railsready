@@ -122,7 +122,7 @@ if [ $whichRubyVersion -eq 1 ] ; then
   ruby_version_string="ruby-1.9.3-p0"
   ruby_source_url="http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.tar.gz"
   ruby_source_tar_name="ruby-1.9.3-p0.tar.gz"
-  ruby_source_dir_name="ruby-1.9.3.p0"
+  ruby_source_dir_name="ruby-1.9.3-p0"
 elif [ $whichRubyVersion -eq 2 ] ; then
   ruby_version="2.0.0"
   ruby_version_string="ruby-2.0.0-p0"
