@@ -229,12 +229,9 @@ read whichRubyVersion
 # fi
 # echo "==> done..."
 
-
-echo $railsPath
-
-# echo -e "\n=> Creating config/unicorn.rb..."
-#   wget -O config/unicorn.rb https://raw.github.com/defunkt/unicorn/master/examples/unicorn.conf.rb
-# echo "==> done..."
+echo -e "\n=> Creating config/unicorn.rb..."
+  wget -O ~/$railsPath/config/unicorn.rb https://raw.github.com/defunkt/unicorn/master/examples/unicorn.conf.rb
+echo "==> done..."
 
 echo -e "\n#################################"
 echo    "### Installation is complete! ###"
