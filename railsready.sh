@@ -82,10 +82,8 @@ read isRails
 
 if [ $isRails -eq 1 ] ; then
   # Where is config at?
-  echo -e "\n"
   echo "What is the path to config directory:  "
   read railsPath
-  echo "You chose $railsPath"
 fi
 
 
