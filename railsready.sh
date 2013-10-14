@@ -72,6 +72,21 @@ echo "Make sure you got it from https://github.com/rebel-outpost/railsready"
 # Check if the user has sudo privileges.
 sudo -v >/dev/null 2>&1 || { echo $script_runner has no sudo privileges ; exit 1; }
 
+# Ask if this is Rails
+echo -e "\n"
+echo "Is this a Rails App?"
+echo "=> 1. Yes"
+echo "=> 2. No"
+echo -n "Select yes or no [1 or 2]? "
+read isRails
+
+if [ $isRails -eq 1 ] ; then
+  # Where is config at?
+  echo -e "\n"
+  echo "What is the path to config:"
+  read railsPath
+fi
+
 # Ask if you want to build Ruby or install RVM
 echo -e "\n"
 echo "Build Ruby or install RVM?"
@@ -213,20 +228,6 @@ read whichRubyVersion
 # fi
 # echo "==> done..."
 
-# Ask if this is Rails
-echo -e "\n"
-echo "Is this a Rails App?"
-echo "=> 1. Yes"
-echo "=> 2. No"
-echo -n "Select yes or no [1 or 2]? "
-read isRails
-
-if [ $isRails -eq 1 ] ; then
-  # Where is config at?
-  echo -e "\n"
-  echo "What is the path to config:"
-  read railsPath
-fi
 
 echo $railsPath
 
