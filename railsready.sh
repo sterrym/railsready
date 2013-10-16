@@ -88,6 +88,11 @@ sudo -v >/dev/null 2>&1 || { echo $script_runner has no sudo privileges ; exit 1
 #   read railsPath
 # fi
 
+
+# mysql-client-core-5.5
+#  sudo apt-get install postgresql
+
+
 # Ask if you want to build Ruby or install RVM
 echo -e "\n"
 echo "Build Ruby or install RVM?"
@@ -175,9 +180,11 @@ elif [ $whichRuby -eq 2 ] ; then
   if [ -f ~/.bashrc ] ; then
     source ~/.bashrc
   fi
+  echo "=> passed bashrc.."
   if [ -f ~/.bash_profile ] ; then
     source ~/.bash_profile
   fi
+  echo "=> passed bash_profile.."
   if [ -f ~/.rvm/scripts/rvm ] ; then
     source ~/.rvm/scripts/rvm
   fi
