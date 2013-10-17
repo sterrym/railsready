@@ -63,7 +63,7 @@ echo "What this script gets you:"
 echo " * Ruby (your choice of version)"
 echo " * Imagemagick"
 echo " * libs needed to run Rails (sqlite, mysql, etc)"
-echo " * Bundler, Passenger, and Rails gems"
+echo " * Bundler"
 echo " * Git"
 
 echo -e "\nThis script is always changing."
@@ -72,27 +72,6 @@ echo "Make sure you got it from https://github.com/rebel-outpost/railsready"
 # Check if the user has sudo privileges.
 sudo -v >/dev/null 2>&1 || { echo $script_runner has no sudo privileges ; exit 1; }
 
-# Ask if this is Rails
-# echo -e "\n"
-# echo "Is this a Rails App?"
-# echo "=> 1. Yes"
-# echo "=> 2. No"
-# echo -n "Select yes or no [1 or 2]? "
-# read isRails
-
-# if [ $isRails -eq 1 ] ; then
-#   # Where is config at?
-#   echo -e "\n"
-#   echo "What is the path to config directory:"
-#   echo -n "Path to config?  "
-#   read railsPath
-# fi
-
-
-# mysql-client-core-5.5
-#  sudo apt-get install postgresql
-
-
 # Ask if you want to build Ruby or install RVM
 echo -e "\n"
 echo "Build Ruby or install RVM?"
@@ -100,6 +79,32 @@ echo "=> 1. Build from source"
 echo "=> 2. Install RVM"
 echo -n "Select your Ruby type [1 or 2]? "
 read whichRuby
+
+# Ask you which version of Ruby
+echo -e "\n"
+echo "Select Ruby version"
+echo "=> 1. 1.9.3"
+echo "=> 2. 2.0.0"
+echo -n "Select your Ruby version [1 or 2]? "
+read whichRubyVersion
+
+# Ask you which server
+echo -e "\n"
+echo "Select Rails Server"
+echo "=> 1. Unicorn"
+echo "=> 2. Thin"
+echo "=> 3. Passenger"
+echo -n "Select your server [1, 2 or 3]? "
+read whichServer
+
+# Ask you which db
+echo -e "\n"
+echo "Select database"
+echo "=> 1. Mongo"
+echo "=> 2. MySQL"
+echo "=> 3. PostgreSQL"
+echo -n "Select your database [1, 2 or 3]? "
+read whichDatabase
 
 if [ $whichRuby -eq 1 ] ; then
   echo -e "\n\n!!! Set to build Ruby from source and install system wide !!! \n"
@@ -114,13 +119,6 @@ echo -e "\n=> Creating install dir..."
 cd && mkdir -p railsready/src && cd railsready && touch install.log
 echo "==> done..."
 
-# Ask you which version of Ruby
-echo -e "\n"
-echo "Select Ruby version"
-echo "=> 1. 1.9.3"
-echo "=> 2. 2.0.0"
-echo -n "Select your Ruby version [1 or 2]? "
-read whichRubyVersion
 
 if [ $whichRubyVersion -eq 1 ] ; then
   ruby_version="1.9.3"
@@ -163,30 +161,27 @@ if [ $whichRuby -eq 1 ] ; then
 elif [ $whichRuby -eq 2 ] ; then
   #thanks wayneeseguin :)
   echo -e "\n=> Installing RVM the Ruby enVironment Manager http://rvm.beginrescueend.com/rvm/install/ \n"
-  curl -O -L -k https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer
-  chmod +x rvm-installer
-  "$PWD/rvm-installer" >> $log_file 2>&1
-  [[ -f rvm-installer ]] && rm -f rvm-installer
+  \curl -L https://get.rvm.io | bash >> $log_file 2>&1
   echo -e "\n=> Setting up RVM to load with new shells..."
   #if RVM is installed as user root it goes to /usr/local/rvm/ not ~/.rvm
-  if [ -f ~/.bashrc ] ; then
-    echo  '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*' >> "$HOME/.bashrc"
-  fi
   if [ -f ~/.bash_profile ] ; then
-    echo  '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*' >> "$HOME/.bash_profile"
+    if [ -f ~/.profile ] ; then
+      echo 'source ~/.profile' >> "$HOME/.bash_profile"
+    fi
   fi
   echo "==> done..."
   echo "=> Loading RVM..."
+  if [ -f ~/.profile ] ; then
+    source ~/.profile
+  fi
   if [ -f ~/.bashrc ] ; then
     source ~/.bashrc
   fi
-  echo "=> passed bashrc.."
   if [ -f ~/.bash_profile ] ; then
     source ~/.bash_profile
   fi
-  echo "=> passed bash_profile.."
-  if [ -f ~/.rvm/scripts/rvm ] ; then
-    source ~/.rvm/scripts/rvm
+  if [ -f /etc/profile.d/rvm.sh ] ; then
+    source /etc/profile.d/rvm.sh
   fi
   echo "==> done..."
   echo -e "\n=> Installing Ruby $ruby_version_string (this will take a while)..."
@@ -210,6 +205,9 @@ fi
 if [ -f ~/.bash_profile ] ; then
   source ~/.bash_profile
 fi
+if [ -f /etc/profile.d/rvm.sh ] ; then
+  source /etc/profile.d/rvm.sh
+fi
 echo "==> done..."
 
 echo -e "\n=> Updating Rubygems..."
@@ -228,13 +226,19 @@ elif [ $whichRuby -eq 2 ] ; then
 fi
 echo "==> done..."
 
-echo -e "\n=> Installing Unicorn..."
-if [ $whichRuby -eq 1 ] ; then
-  sudo gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
-elif [ $whichRuby -eq 2 ] ; then
-  gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
+
+# mysql-client-core-5.5
+#  sudo apt-get install postgresql
+
+if [ $whichServer -eq 1 ] ; then
+  echo -e "\n=> Installing Unicorn..."
+  if [ $whichRuby -eq 1 ] ; then
+    sudo gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
+  elif [ $whichRuby -eq 2 ] ; then
+    gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
+  fi
+  echo "==> done..."
 fi
-echo "==> done..."
 
 echo -e "\n#################################"
 echo    "### Installation is complete! ###"
