@@ -16,8 +16,8 @@ ruby_source_tar_name=$4
 ruby_source_dir_name=$5
 whichRuby=$6 # 1=source 2=RVM
 script_runner=$(whoami)
-whichServer=$7
-whichDatabase=$8
+whichServer=$7 # 1=unicorn 2=thin 3=passenger
+whichDatabase=$8 # 1=mongo 2=mysql 3=postgresql
 railsready_path=$9
 log_file=$10
 
@@ -49,10 +49,6 @@ sudo $pm -y install \
     libtool >> $log_file 2>&1
 echo "==> done..."
 
-# echo -e "\n=> Installing libs needed for sqlite and mysql..."
-# sudo $pm -y install libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev >> $log_file 2>&1
-# echo "==> done..."
-
 # # Install imagemagick
 # echo -e "\n=> Installing imagemagick (this may take a while)..."
 # sudo $pm -y install imagemagick libmagick9-dev >> $log_file 2>&1
@@ -72,3 +68,9 @@ echo "==> done..."
 echo -e "\n=> Installing Nginx..."
 sudo $pm -y install nginx >> $log_file 2>&1
 echo "==> done..."
+
+# mysql-client-core-5.5
+#  sudo apt-get install postgresql
+# echo -e "\n=> Installing libs needed for sqlite and mysql..."
+# sudo $pm -y install libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev >> $log_file 2>&1
+# echo "==> done..."
