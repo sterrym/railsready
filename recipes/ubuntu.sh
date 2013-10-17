@@ -22,7 +22,7 @@ railsready_path=$7
 log_file=$8
 
 
-# echo "vars set: $ruby_version $ruby_version_string $ruby_source_url $ruby_source_tar_name $ruby_source_dir_name $whichRuby $whichServer $whichDatabase $railsready_path $log_file"
+echo "vars set: $ruby_version $ruby_version_string $ruby_source_url $ruby_source_tar_name $ruby_source_dir_name $whichRuby $whichServer $whichDatabase $railsready_path $log_file"
 echo "\nServer == $whichServer"
 echo "\nDatabase == $whichDatabase"
 
