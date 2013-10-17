@@ -230,15 +230,15 @@ echo "==> done..."
 # mysql-client-core-5.5
 #  sudo apt-get install postgresql
 
-if [ $whichServer -eq 1 ] ; then
-  echo -e "\n=> Installing Unicorn..."
-  if [ $whichRuby -eq 1 ] ; then
-    sudo gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
-  elif [ $whichRuby -eq 2 ] ; then
-    gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
-  fi
-  echo "==> done..."
-fi
+# if [ $whichServer -eq 1 ] ; then
+#   echo -e "\n=> Installing Unicorn..."
+#   if [ $whichRuby -eq 1 ] ; then
+#     sudo gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
+#   elif [ $whichRuby -eq 2 ] ; then
+#     gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
+#   fi
+#   echo "==> done..."
+# fi
 
 echo -e "\n#################################"
 echo    "### Installation is complete! ###"
