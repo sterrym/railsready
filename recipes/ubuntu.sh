@@ -16,15 +16,13 @@ ruby_source_tar_name=$4
 ruby_source_dir_name=$5
 whichRuby=$6 # 1=source 2=RVM
 script_runner=$(whoami)
-whichServer=$9
-whichDatabase=$10
-railsready_path=$7
-log_file=$8
+whichServer=$7
+whichDatabase=$8
+railsready_path=$9
+log_file=$10
 
 
 echo "vars set: $ruby_version $ruby_version_string $ruby_source_url $ruby_source_tar_name $ruby_source_dir_name $whichRuby $whichServer $whichDatabase $railsready_path $log_file"
-echo "\nServer == $whichServer"
-echo "\nDatabase == $whichDatabase"
 
 
 #test if aptitude exists and default to using that if possible
