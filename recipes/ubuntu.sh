@@ -17,7 +17,7 @@ ruby_source_dir_name=$5
 whichRuby=$6 # 1=source 2=RVM
 script_runner=$(whoami)
 whichServer=$7 # 1=unicorn 2=thin 3=passenger
-whichDatabase=$8 # 1=mongo 2=mysql 3=postgresql
+whichDatabase=$8 # 1=mysql 2=postgresql 3=sqlite3
 railsready_path=$9
 log_file=$10
 
@@ -49,8 +49,8 @@ sudo $pm -y install \
     libtool >> $log_file 2>&1
 echo "==> done..."
 
-echo -e "\n=> Installing libs needed for sqlite and mysql..."
-sudo $pm -y install libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev >> $log_file 2>&1
+echo -e "\n=> Installing libs needed for mysql, postgresql and sqlite..."
+sudo $pm -y install libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev libpq-dev >> $log_file 2>&1
 echo "==> done..."
 
 # Install git-core
@@ -68,6 +68,17 @@ echo -e "\n=> Installing Nginx..."
 sudo $pm -y install nginx >> $log_file 2>&1
 echo "==> done..."
 
+
+if [ $whichDatabase -eq 1 ] ; then
+    echo -e "\n=> Installing MySQL\n"
+    sudo $pm install mysql-server mysql-client
+elif [ $whichRuby -eq 2 ] ; then
+    echo -e "\n=> Installing PostgreSQL\n"
+    sudo $pm -y install postgresql
+elif [ $whichRuby -eq 3 ] ; then
+    echo -e "\n=> Installing SQLite3\n"
+    sudo $pm -y install sqlite3
+fi
 # mysql-client-core-5.5
 #  sudo apt-get install postgresql
 # echo -e "\n=> Installing libs needed for sqlite and mysql..."

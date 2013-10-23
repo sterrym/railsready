@@ -91,9 +91,9 @@ read whichServer
 # Ask you which db
 echo -e "\n"
 echo "Select database"
-echo "=> 1. Mongo"
-echo "=> 2. MySQL"
-echo "=> 3. PostgreSQL"
+echo "=> 1. MySQL"
+echo "=> 2. PostgreSQL"
+echo "=> 3. SQLite3 (only for testing/development)"
 echo -n "Select your database [1, 2 or 3]? "
 read whichDatabase
 
