@@ -79,14 +79,6 @@ echo "=> 2. Install rbenv"
 echo -n "Select your Ruby type [1 or 2]? "
 read whichRuby
 
-# Ask you which version of Ruby
-echo -e "\n"
-echo "Select Ruby version"
-echo "=> 1. 1.9.3"
-echo "=> 2. 2.0.0"
-echo -n "Select your Ruby version [1 or 2]? "
-read whichRubyVersion
-
 # Ask you which server
 echo -e "\n"
 echo "Select Rails Server"
@@ -117,22 +109,6 @@ fi
 echo -e "\n=> Creating install dir..."
 cd && mkdir -p railsready/src && cd railsready && touch install.log
 echo "==> done..."
-
-
-if [ $whichRubyVersion -eq 1 ] ; then
-  ruby_version="1.9.3"
-  ruby_version_string="ruby-1.9.3-p0"
-  ruby_source_url="http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.tar.gz"
-  ruby_source_tar_name="ruby-1.9.3-p0.tar.gz"
-  ruby_source_dir_name="ruby-1.9.3-p0"
-elif [ $whichRubyVersion -eq 2 ] ; then
-  ruby_version="2.0.0"
-  ruby_version_string="ruby-2.0.0-p0"
-  ruby_source_url="http://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p0.tar.gz"
-  ruby_source_tar_name="ruby-2.0.0-p0.tar.gz"
-  ruby_source_dir_name="ruby-2.0.0-p0"
-fi
-
 
 echo -e "\n=> Downloading and running recipe for $distro...\n"
 #Download the distro specific recipe and run it, passing along all the variables as args
