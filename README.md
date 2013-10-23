@@ -1,4 +1,5 @@
 #Rails Ready
+###Thanks to Josh Frye for this script.  I have made modifications to suit my needs but it all started with Josh's script.
 ###Ruby and Rails setup script for Linux and OSX
 ###Distros supported:
  * Ubuntu
@@ -8,7 +9,7 @@
 #
 ###To run:
 ####Linux
-  * `wget --no-check-certificate https://raw.github.com/joshfng/railsready/master/railsready.sh && bash railsready.sh`
+  * `wget --no-check-certificate https://raw.github.com/rebel-outpost/railsready/master/railsready.sh && bash railsready.sh`
 
 ####OSX
   * `curl -O https://raw.github.com/joshfng/railsready/master/railsready.sh && bash railsready.sh`
@@ -19,7 +20,9 @@ The script will ask if you want to build Ruby from source or install RVM
   * Homebrew (OSX only)
   * Ruby 2.0.0 latest patch level (installed to /usr/local/bin/ruby) or RVM running 2.0.0 latest patch level
   * libs needed to run Rails (sqlite, mysql, etc)
-  * Bundler, Passenger, and Rails gems
+  * Rails server choice of Unicorn, Thin or Passenger
+  * Nginx server
+  * Bundler
   * Git
 
 Please note: If you are running on a super slow connection your sudo session may timeout and you'll have to enter your password again. If you're running this on an EC2 or RS instance it shouldn't be problem.
