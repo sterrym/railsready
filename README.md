@@ -29,16 +29,6 @@ Please note: If you are running on a super slow connection your sudo session may
 
 Just install either NGINX or Apache, then run `passenger-install-nginx-module` or `passenger-install-apache2-module` from bash prompt, upload your app, point your vhost config to your apps public dir and go!
 
-A note about RVM+passenger+nginx:
-Passenger installed via RVM can't locate the OpenSSL package installed on Ubuntu. A user contributed fix is as follows:
-
-````
-rvm remove 2.0.0
-rvm pkg install openssl
-rvm install 2.0.0 --with-openssl-dir=$HOME/.rvm/usr
-rvmsudo passenger-install-nginx-module
-````
-
 #
 ####Rails Ready now supports a "plugin" type system. The distro is detected and a corresponding "recipe" file is pulled down to run the distro specific setup steps. Check the recipes dir to see if your distro is supported. If you would like to add support for a system fork the repo, write a recipe, and submit a pull request. Take a look at recipes/ubuntu.sh for an idea of what to model your recipe after.
 
