@@ -59,7 +59,7 @@ sudo $pm -y install git-core >> $log_file 2>&1
 echo "==> done..."
 
 # Install nodejs for assets
-echo -e "\n=> Installing Nodejs..."
+echo -e "\n=> Installing javascript runtime (Nodejs)..."
 sudo $pm -y install nodejs >> $log_file 2>&1
 echo "==> done..."
 
@@ -68,10 +68,9 @@ echo -e "\n=> Installing Nginx..."
 sudo $pm -y install nginx >> $log_file 2>&1
 echo "==> done..."
 
-
 if [ $whichDatabase -eq 1 ] ; then
     echo -e "\n=> Installing MySQL\n"
-    sudo $pm install mysql-server mysql-client
+    sudo $pm -y install mysql-server mysql-client
 elif [ $whichRuby -eq 2 ] ; then
     echo -e "\n=> Installing PostgreSQL\n"
     sudo $pm -y install postgresql
