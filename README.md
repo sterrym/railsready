@@ -54,3 +54,39 @@ For Passenger documentation, see https://www.phusionpassenger.com/
 ####Unicorn
 
 For Unicorn docs, see http://unicorn.bogomips.org. For a basic nginx install, see http://unicorn.bogomips.org/examples/nginx.conf. For other examples see http://unicorn.bogomips.org/examples
+
+###Now what?
+
+Below are some other optional things you can do to configure your server
+
+#### Create a user for deployment
+
+`sudo adduser deploy`
+
+If you create a deployment user, make sure you do the following as that user.
+
+#### Generate SSH keys
+
+`ssh-keygen -t rsa -C "your_email@youremail.com"`
+
+####Add public key to github then test it out with this
+
+`ssh -T git@github.com`
+
+####Set global git identity
+
+`git config --global user.name "John Doe"`
+`git config --global user.email your_email@youremail.com`
+
+####Set default text editor for git
+
+`git config --global core.editor nano`
+
+####Set git status colors
+
+`git config --global color.diff auto`
+`git config --global color.status auto`
+`git config --global color.branch auto`
+`git config --global color.status.changed yellow`
+`git config --global color.status.added green`
+`git config --global color.status.untracked red`
