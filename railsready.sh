@@ -160,51 +160,60 @@ if [ -f ~/.bash_profile ] ; then
 fi
 echo "==> done..."
 
+echo -e "\n=> Turning off rdoc generation when installing/updating gems..."
+echo "install: --no-ri --no-rdoc" >> ~/.gemrc
+echo "update: --no-ri --no-rdoc" >> ~/.gemrc
+
 echo -e "\n=> Updating Rubygems..."
 if [ $whichRuby -eq 1 ] ; then
-  sudo gem update --system --no-ri --no-rdoc >> $log_file 2>&1
+  sudo gem update --system >> $log_file 2>&1
 elif [ $whichRuby -eq 2 ] ; then
-  gem update --system --no-ri --no-rdoc >> $log_file 2>&1
+  gem update --system >> $log_file 2>&1
 elif [ $whichRuby -eq 3 ] ; then
-  gem update --system --no-ri --no-rdoc >> $log_file 2>&1
+  gem update --system >> $log_file 2>&1
 fi
 echo "==> done..."
 
 echo -e "\n=> Installing Bundler..."
 if [ $whichRuby -eq 1 ] ; then
-  sudo gem install bundler --no-ri --no-rdoc -f >> $log_file 2>&1
+  sudo gem install bundler -f >> $log_file 2>&1
 elif [ $whichRuby -eq 2 ] ; then
-  gem install bundler --no-ri --no-rdoc -f >> $log_file 2>&1
+  gem install bundler -f >> $log_file 2>&1
 elif [ $whichRuby -eq 3 ] ; then
-  gem install bundler --no-ri --no-rdoc -f >> $log_file 2>&1
+  gem install bundler -f >> $log_file 2>&1
 fi
 echo "==> done..."
 
 if [ $whichServer -eq 1 ] ; then
   echo -e "\n=> Installing Unicorn..."
   if [ $whichRuby -eq 1 ] ; then
-    sudo gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
+    sudo gem install unicorn >> $log_file 2>&1
   elif [ $whichRuby -eq 2 ] ; then
-    gem install unicorn --no-ri --no-rdoc >> $log_file 2>&1
+    gem install unicorn >> $log_file 2>&1
   fi
   echo "==> done..."
 elif [ $whichServer -eq 2 ] ; then
   echo -e "\n=> Installing Thin..."
   if [ $whichRuby -eq 1 ] ; then
-    sudo gem install thin --no-ri --no-rdoc >> $log_file 2>&1
+    sudo gem install thin >> $log_file 2>&1
   elif [ $whichRuby -eq 2 ] ; then
-    gem install thin --no-ri --no-rdoc >> $log_file 2>&1
+    gem install thin >> $log_file 2>&1
   fi
   echo "==> done..."
 elif [ $whichServer -eq 3 ] ; then
   echo -e "\n=> Installing Passenger..."
   if [ $whichRuby -eq 1 ] ; then
-    sudo gem install passenger --no-ri --no-rdoc >> $log_file 2>&1
+    sudo gem install passenger >> $log_file 2>&1
   elif [ $whichRuby -eq 2 ] ; then
-    gem install passenger --no-ri --no-rdoc >> $log_file 2>&1
+    gem install passenger >> $log_file 2>&1
   fi
   echo "==> done..."
 fi
+
+echo -e "\n=> Setting global bundler gem install path..."
+  # from within a project with a Gemfile
+  `bundle config path .bundle/gems`
+echo "==> done..."
 
 echo -e "\n#################################"
 echo    "### Installation is complete! ###"
