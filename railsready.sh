@@ -211,11 +211,6 @@ elif [ $whichServer -eq 3 ] ; then
   echo "==> done..."
 fi
 
-echo -e "\n=> Setting global bundler gem install path..."
-  # from within a project with a Gemfile
-  `bundle config path .bundle/gems`
-echo "==> done..."
-
 echo -e "\n#################################"
 echo    "### Installation is complete! ###"
 echo -e "#################################\n"
