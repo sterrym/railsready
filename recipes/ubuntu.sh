@@ -34,7 +34,7 @@ fi
 
 echo -e "\nUsing $pm for package installation\n"
 echo -e "\nUpdating system"
-sudo $pm -y update
+sudo $pm -y update >> $log_file 2>&1
 echo "==> done..."
 
 # Install build tools
@@ -70,16 +70,11 @@ echo "==> done..."
 
 if [ $whichDatabase -eq 1 ] ; then
     echo -e "\n=> Installing MySQL\n"
-    sudo $pm -y install mysql-server mysql-client
+    sudo $pm -y install mysql-server mysql-client >> $log_file 2>&1
 elif [ $whichRuby -eq 2 ] ; then
     echo -e "\n=> Installing PostgreSQL\n"
-    sudo $pm -y install postgresql
+    sudo $pm -y install postgresql >> $log_file 2>&1
 elif [ $whichRuby -eq 3 ] ; then
     echo -e "\n=> Installing SQLite3\n"
-    sudo $pm -y install sqlite3
+    sudo $pm -y install sqlite3 >> $log_file 2>&1
 fi
-# mysql-client-core-5.5
-#  sudo apt-get install postgresql
-# echo -e "\n=> Installing libs needed for sqlite and mysql..."
-# sudo $pm -y install libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev >> $log_file 2>&1
-# echo "==> done..."
